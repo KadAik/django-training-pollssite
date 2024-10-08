@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.db.models import F
 from django.urls import reverse
+from django.views import generic
 
 from .models import Question
 from .models import Choice
@@ -21,9 +22,9 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "pollsapp/detail.html", {"question": question})
+class QuestionDetailView(generic.DetailView):
+    model = Question
+    template_name = "pollsapp/detail.html"
 
 
 def results(request, question_id):
