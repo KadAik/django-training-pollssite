@@ -1,0 +1,13 @@
+
+*{
+    box-sizing: border-box;
+}
+
+li a{
+    color: green;
+    font-size: 2em;
+}
+
+body {
+    background: white url("images/background.png") no-repeat;
+}
