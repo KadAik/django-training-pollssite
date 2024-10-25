@@ -1,0 +1,88 @@
+/* Here we reset bootstrap styling to fieldset and legend so the box around 
+legend which disappears in bootsrap 5 can be visible
+*/
+.reset{
+    
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(#FFFFFF, #3d80c3) no-repeat;
+}
+
+nav{
+    position: absolute;
+    top: 0px;
+}
+
+#login-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#login-form-fieldset legend{
+    font-size: inherit;
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+    text-align: center;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#timer{
+    width: 50%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2%;
+
+    /* Positionning */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#timer div{
+    width: 100%;
+    aspect-ratio: 1;
+    box-shadow: inset -5px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    background: linear-gradient(#FFFFFF, #3d80c3) no-repeat;
+
+    border-radius: 10%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styling */
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    font-weight: bold;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position just below the nav item */
+    left: 0;
+    transform: translateY(0); /* No extra gap */
+    z-index: 1000;
+}
+
+@media (max-height: 700px) {
+    .navbar-nav .dropdown-menu {
+        max-height: 20vh; /* 20% of the viewport height */
+        overflow-y: auto; /* Adds scrolling if the content is taller than the max-height */
+    }
+}
+

@@ -51,6 +51,9 @@ MIDDLEWARE = [
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Own registered middleware for session management and authentication
+    'authdemo.middleware.sessions.SessionMiddleware',
+    'authdemo.middleware.auth.AuthenticationMiddleware'
 ]
 
 ROOT_URLCONF = 'polls.urls'
