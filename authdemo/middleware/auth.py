@@ -16,8 +16,11 @@ class AuthenticationMiddleware:
         if not getattr(request.session, 'user', None):
             # If the user is not authenticated and the request is not for the login page
             if request.path != reverse('authdemo:login'):
-                # Redirect to the login page with the next URL
-                return HttpResponseRedirect(f"{reverse('authdemo:login')}?next={request.path}")
+                if request.path == reverse("authdemo:register"):
+                    pass
+                else:
+                    # Redirect to the login page with the next URL
+                    return HttpResponseRedirect(f"{reverse('authdemo:login')}?next={request.path}")
 
         response = self.get_response(request)
 

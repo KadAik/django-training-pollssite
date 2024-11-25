@@ -1,18 +1,22 @@
 {%  extends 'authdemo/base_template.html' %}
 
 {% block title %}
-    <title>Login page</title>
+    <title>Login</title>
 {% endblock %}
 
-{% block nav-bar %}
-    
-{% endblock %}
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-{% block content %}
     <form action="{% url "authdemo:login" %}" method="POST" id="login-form" class="container fs-3">
         {% csrf_token %}
         <div class="row">
-            <fieldset id="login-form-fieldset" class="reset mx-auto col-6 col-md-4 col-lg-4 d-flex flex-column gap-3">
+            <fieldset id="login-form-fieldset" class="reset mx-auto col-6 col-md-4 col-lg-5 d-flex flex-column gap-3">
                 <legend class="reset">Login</legend>
                 <div class="form-group text-left">
                     <label for="first-name" class="form-label mb-2 fs-5">First name</label>
@@ -30,6 +34,10 @@
                 </div>
 
                 <button type="submit" id="login-form-submit" class="btn btn-outline-primary btn-lg">Login</button>
+
+                <div class="">
+                    <div class="fs-6 text-wrap">Don't have an account ? <a href="{% url "authdemo:register" %}">register</a></div>
+                </div>
         </fieldset>
         </div>
        
