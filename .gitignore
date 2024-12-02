@@ -1,0 +1,7 @@
+# Application storages
+media/*
+uploads/*
+
+
+# Databases
+db.sqlite3
