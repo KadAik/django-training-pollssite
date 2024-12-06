@@ -14,11 +14,12 @@ class User(models.Model):
 
     user_id = models.AutoField(primary_key=True)
     last_name = models.CharField(max_length=255)
-    first_name = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
 
     @property
-    def name(self):
+    def username(self):
         return f"{self.first_name} {self.last_name}"
 
     # Amending the save method to hash the password field before storing it in the db
@@ -29,7 +30,16 @@ class User(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.username + self.email
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['first_name', 'last_name', 'email'], name='unique_full_name_email'),
+        ]
+
+        indexes = [
+            models.Index(fields=['first_name', 'last_name']),
+        ]
 
 
 class Session(models.Model):
@@ -38,7 +48,6 @@ class Session(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     expiry = models.DurationField(default=datetime.timedelta(minutes=20))
-
     container = models.JSONField(default=dict)
 
     def __str__(self):

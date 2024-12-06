@@ -13,6 +13,7 @@ class SessionMiddleware:
         self.get_response = get_response
 
     def __call__(self, request: HttpRequest):
+        """Attach a session object to an incoming request."""
 
         session_id = request.COOKIES.get("session_id", False)
         if session_id:
@@ -32,7 +33,6 @@ class SessionMiddleware:
                 session.save()
         else:
             session = Session()
-            # Persist the session
             session.save()
 
         # Attach a session object to the incoming request
