@@ -5,3 +5,7 @@ uploads/*
 
 # Databases
 db.sqlite3
+
+
+# Log files
+log.txt
